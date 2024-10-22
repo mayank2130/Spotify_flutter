@@ -7,6 +7,7 @@ import 'package:quesso/common/widgets/button/basic_app_button.dart';
 import 'package:quesso/core/configs/assets/app_images.dart';
 import 'package:quesso/core/configs/assets/app_vectors.dart';
 import 'package:quesso/core/configs/theme/app_colors.dart';
+import 'package:quesso/presentation/auth/pages/signup_or_signin.dart';
 import 'package:quesso/presentation/choose_mode/bloc/theme_cubit.dart';
 
 class ChooseModePage extends StatelessWidget {
@@ -139,12 +140,12 @@ class ChooseModePage extends StatelessWidget {
                   const SizedBox(height: 50,),
                   BasicAppButton(
                     onPressed: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (BuildContext context) => 
-                    //     )
-                    //  );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const SignupOrSigninPage()
+                        )
+                     );
                     },
                     title: 'Continue'
                   )
