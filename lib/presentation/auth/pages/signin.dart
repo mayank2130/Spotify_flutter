@@ -3,14 +3,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quesso/common/widgets/appbar/app_bar.dart';
 import 'package:quesso/common/widgets/button/basic_app_button.dart';
 import 'package:quesso/core/configs/assets/app_vectors.dart';
-import 'package:quesso/presentation/auth/pages/signin.dart';
+import 'package:quesso/presentation/auth/pages/signup.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class SigninPage extends StatelessWidget {
+  SigninPage({super.key});
+
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: _signupText(context),
       appBar: BasicAppBar(
         title: SvgPicture.asset(
           AppVectors.logo,
@@ -18,24 +22,25 @@ class SignupPage extends StatelessWidget {
           width: 40,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(
+        vertical: 50,
+        horizontal: 30
+      ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [ 
+          children: [
             _registerText(),
-           const SizedBox(height: 50,),
-           _fullNameField(context),
-           const SizedBox(height: 20,),
-           _emailField(context),
-           const SizedBox(height: 20,),
-           _passwordField(context),
-           const SizedBox(height: 20,),
-           BasicAppButton(
-              onPressed: () {},
-              title: 'Create Account'
-            ),
-      _siginText(context)
+            const SizedBox(height: 50,),
+            _emailField(context),
+            const SizedBox(height: 20,),
+            _passwordField(context),
+            const SizedBox(height: 20,),
+            BasicAppButton(
+              onPressed: (){},
+              title: 'Sign In'
+            )
+      
           ],
         ),
       ),
@@ -44,45 +49,39 @@ class SignupPage extends StatelessWidget {
 
   Widget _registerText() {
     return const Text(
-      "Register",
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+      'Sign In',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 25
+      ),
       textAlign: TextAlign.center,
     );
   }
-
-  Widget _fullNameField(BuildContext context) {
-    return TextField(
-      decoration:const InputDecoration(
-        hintText: "Full Name"
-      ).applyDefaults(
-        Theme.of(context).inputDecorationTheme
-      ),
-    );
-  }
-
-
+  
+ 
   Widget _emailField(BuildContext context) {
     return TextField(
-      decoration:const InputDecoration(
-        hintText: "Enter Email"
+      controller: _email,
+      decoration: const InputDecoration(
+        hintText: 'Enter Email'
       ).applyDefaults(
         Theme.of(context).inputDecorationTheme
       ),
     );
   }
 
-
-  Widget _passwordField(BuildContext context) {
+   Widget _passwordField(BuildContext context) {
     return TextField(
-      decoration:const InputDecoration(
-        hintText: "Enter Password"
+      controller: _password,
+      decoration: const InputDecoration(
+        hintText: 'Password'
       ).applyDefaults(
         Theme.of(context).inputDecorationTheme
       ),
     );
   }
 
-  Widget _siginText(BuildContext context) {
+  Widget _signupText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 30
@@ -91,7 +90,7 @@ class SignupPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Do you have an account? ',
+            'Not A Member? ',
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 14
@@ -102,12 +101,12 @@ class SignupPage extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => SigninPage()
+                  builder: (BuildContext context) => const SignupPage()
                 )
               );
             },
             child: const Text(
-              'Sign In'
+              'Register Now'
             )
           )
         ],
